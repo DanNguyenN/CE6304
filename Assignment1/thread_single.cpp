@@ -15,9 +15,16 @@ double mat1[1000][1000], mat2[1000][1000], mat3[1000][1000];
     int m=1000, n=1000, p=1000;
     int s=0, e=1000;
 
-void matmul (void);
 void matmul1 (void);
 void matmul2 (void);
+
+void* program(void * arg){
+    matmul1();
+    matmul2();
+    pthread_exit(NULL);
+}
+
+pthread_t tid;
 
 int main (void){
     FILE *f;
@@ -32,8 +39,10 @@ int main (void){
     clock_t start, end;
     double cpu_time_used;
     start = clock();
-    matmul1();
-    matmul2();
+    
+    pthread_create(&tid, NULL, program, NULL);
+    pthread_join(tid, NULL);
+
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Time taken: %f\n", cpu_time_used, "ms\n");
@@ -44,7 +53,7 @@ int main (void){
     return 0;
 }
 
-void matmul1(void){
+void matmul1 (void){
     int i, j, k, l;
     double sum;
     int s = 0, e = 500;
@@ -60,7 +69,7 @@ void matmul1(void){
     }
 }
 
-void matmul2(void){
+void matmul2 (void){
     int i, j, k, l;
     double sum;
     int s = 500, e = 1000;

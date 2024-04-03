@@ -18,6 +18,13 @@ double mat1[1000][1000], mat2[1000][1000], mat3[1000][1000];
 
 void matmul (void);
 
+void* program(void * arg){
+    matmul();
+    pthread_exit(NULL);
+}
+
+pthread_t tid;
+
 int main (void){
     FILE *f;
     f = fopen("data1", "rb");
@@ -31,7 +38,10 @@ int main (void){
     clock_t start, end;
     double cpu_time_used;
     start = clock();
-    matmul();
+    
+    pthread_create(&tid, NULL, program, NULL);
+    pthread_join(tid, NULL);
+    
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Time taken: %f\n", cpu_time_used, "ms\n");
@@ -43,7 +53,7 @@ int main (void){
 }
 
 
-void matmul(void){
+void matmul (void){
     int i, j, k, l;
     double sum;
     for (i=s; i<e; i++){
