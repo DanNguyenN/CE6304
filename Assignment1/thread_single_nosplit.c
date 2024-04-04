@@ -10,8 +10,6 @@ in 1000x1000 matrix mat 3.
 #include <unistd.h>
 #include <errno.h>
 
-#include <ctime>
-
 double mat1[1000][1000], mat2[1000][1000], mat3[1000][1000];
     int m=1000, n=1000, p=1000;
     int s=0, e=1000;
