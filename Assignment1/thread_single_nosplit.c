@@ -32,18 +32,9 @@ int main (void){
     f = fopen("data2", "rb");
     fread(mat2, sizeof(double), sizeof(mat2)/sizeof(double), f);
     fclose(f);
-
-    clock_t start, end;
-    double cpu_time_used;
-    start = clock();
     
     pthread_create(&tid, NULL, program, NULL);
     pthread_join(tid, NULL);
-    
-    end = clock();
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Time taken: %f\n", cpu_time_used, "ms\n");
-
 
     printf("%lf %lf %lf %lf \n", mat3[6][0], mat3[5][3], mat3[5][4],
         mat3[901][7]);

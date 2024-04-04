@@ -1,0 +1,21 @@
+(base) dan@DESKTOP-ABPI8IC:~/CE6304/Assignment1$ gcc thread_single_nosplit.c -lpthread -o out_single_nosplit
+(base) dan@DESKTOP-ABPI8IC:~/CE6304/Assignment1$ gcc thread_single_split.c -lpthread -o out_single_split
+(base) dan@DESKTOP-ABPI8IC:~/CE6304/Assignment1$ gcc thread_multiple.c -lpthread -o out_multi
+(base) dan@DESKTOP-ABPI8IC:~/CE6304/Assignment1$ time ./out_single_nosplit 
+263231489.026600 250623659.456300 247214689.718200 246397832.852100 
+
+real    0m3.566s
+user    0m3.536s
+sys     0m0.020s
+(base) dan@DESKTOP-ABPI8IC:~/CE6304/Assignment1$ time ./out_single_split
+263231489.026600 250623659.456300 247214689.718200 246397832.852100 
+
+real    0m3.518s
+user    0m3.498s
+sys     0m0.010s
+(base) dan@DESKTOP-ABPI8IC:~/CE6304/Assignment1$ time ./out_multi 
+263231489.026600 250623659.456300 247214689.718200 246397832.852100 
+
+real    0m1.941s
+user    0m3.763s
+sys     0m0.010s
